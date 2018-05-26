@@ -1,10 +1,4 @@
-package com.mike.MikeOfficeUtils.WordUtils;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+package com.mike.MikeOfficeUtils;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.poi.POIXMLProperties;
@@ -13,7 +7,10 @@ import org.apache.poi.openxml4j.opc.internal.PackagePropertiesPart;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
-import static com.alibaba.fastjson.JSON.toJSONString;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WordUtils {
     public static String extractDocPlainText(String inputDocPathString) throws IOException {
