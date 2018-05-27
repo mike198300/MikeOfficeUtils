@@ -75,8 +75,8 @@ public class XlsUtils {
         return resString;
     }
 
-    public static boolean isExcelEncrypted(String inputXlsxPathString) throws IOException, GeneralSecurityException {
-        return !validateExcelPassword(inputXlsxPathString,"");
+    public static boolean isExcelEncrypted(String inputExcelPathString) throws IOException, GeneralSecurityException {
+        return !validateExcelPassword(inputExcelPathString,"");
     }
 
     public static boolean validateExcelPassword(String inputExcelFilenameString, String password) throws IOException {
