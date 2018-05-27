@@ -1,10 +1,4 @@
-package com.mike.MikeOfficeUtils.WordUtils;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+package com.mike.MikeOfficeUtils;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.poi.POIXMLProperties;
@@ -13,7 +7,12 @@ import org.apache.poi.openxml4j.opc.internal.PackagePropertiesPart;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
-import static com.alibaba.fastjson.JSON.toJSONString;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WordUtils {
     public static String extractDocPlainText(String inputDocPathString) throws IOException {
@@ -50,6 +49,12 @@ public class WordUtils {
         return res;
     }
 
+    public static boolean isWordFileEncrypted(String inputWordFilenameString){
+        return true;
+    }
+
+//    public static boolean
+
     public static String extractDocxMetaDataJson(String inputDocxPathString) throws IOException {
         XWPFDocument docxDocument = new XWPFDocument(new FileInputStream(inputDocxPathString));
         XWPFWordExtractor docxExtractor = new XWPFWordExtractor(docxDocument);
@@ -62,6 +67,20 @@ public class WordUtils {
 //        POIXMLProperties.ExtendedProperties eee = bbb.getExtendedProperties();
         aaa = docxDocument.getProperties().getCoreProperties().getUnderlyingProperties().toString();
         return "";
+    }
+
+    public static boolean validateExcelFile(String inputFilenameString) throws FileNotFoundException {
+        String suffix = OfficeCommonUtils.getFileExtention(inputFilenameString);
+        if (!(suffix.equals("DOC") || (suffix.equals("DOCX")))){
+            System.err.println("Not a doc or docx file.");
+            return false;
+        }
+        if (new File(inputFilenameString).exists()){
+            return true;
+        } else {
+            System.err.println("File does not exist.");
+            return false;
+        }
     }
 
     public static void main(String[] args) throws IOException {
